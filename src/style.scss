@@ -1,0 +1,286 @@
+@font-face {
+  src: url("/font/SDK_SC_Web.ttf") format("truetype");
+  font-family: "SDK SC Web";
+  font-display: swap;
+}
+
+@font-face {
+  src: url("/font/FirstWorld.ttf") format("truetype");
+  font-family: "FirstWorld";
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+body {
+  --kokomi-purple: #C9CEEE;
+  --kokomi-pink: #DE9EBA;
+  --color-bg: #DFDFDF;
+}
+
+body[arco-theme="dark"] {
+  --kokomi-purple: #767ABA;
+  --kokomi-pink: #DE9EBA;
+  --color-bg: #232324;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(45deg, var(--kokomi-purple) 10%, var(--kokomi-pink) 90%);
+  color: var(--color-text-1);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    "SDK SC Web",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 14px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    border: 0px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    // text-decoration: none;
+    transition: 0.4s;
+    color: var(--color-text-1);
+  }
+
+  input {
+    border: 0px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}
+
+#app {
+  width: 96vw;
+  height: 96vh;
+  overflow: hidden;
+  border: var(--color-border) solid 5px;
+  border-radius: 20px;
+  background-color: var(--color-bg);
+
+  font-weight: normal;
+
+  display: flex;
+}
+
+.sidebar-menu {
+  width: 240px;
+  height: 100%;
+  background-color: var(--color-fill-2);
+  padding: 10px 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .achieve-state {
+      width: 90%;
+      height: 30px;
+
+      display: flex;
+      justify-content: space-around;
+    }
+
+    #achievement-sidebar {
+      width: 100%;
+
+      .achievement-serie {
+        width: 90%;
+        height: 50px;
+        margin: 0px auto;
+        padding: 0px 15px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        p {
+          text-align: right;
+
+          &.achievement-serie-subtext {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .router-link-active.router-link-exact-active {
+        .achievement-serie {
+          background-color: var(--kokomi-purple);
+        }
+      }
+    }
+  }
+
+}
+
+#main-view {
+  width: 100vw;
+  height: 100%;
+  overflow-y: hidden;
+
+  #achievement-manage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    #achievement-box {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+
+      .achievement-toolbox {
+        width: calc(100% - 10px);
+        margin: 0px 5px;
+        padding-top: 5px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          border-radius: 10px;
+        }
+      }
+
+      .achievement-item {
+        margin: 5px auto;
+        width: calc(100% - 10px);
+        height: 90px;
+        background-color: var(--color-fill-3);
+        padding: 10px;
+        border-radius: 1px;
+        border-top-right-radius: 12px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        .achievement-button{
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+          margin-right: 10px;
+          color: var(--color-text-1);
+          background-color: var(--color-fill-2);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.achieved {
+            background-color: var(--kokomi-purple);
+          }
+
+          &.conflict {
+            background-color: var(--kokomi-pink);
+          }
+
+          img {
+            width: 45px;
+            height: 45px;
+          }
+        }
+
+        .achievement-text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: var(--color-text-1);
+
+          > p {
+            font-weight: 700;
+          }
+
+          .achievement-description {
+            font-size: 12px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            color: var(--color-text-2);
+          }
+        }
+      }
+    }
+  }
+}
+
+// 取消 Arco 标徽的阴影
+.arco-badge-number, .arco-badge-text {
+  box-shadow: 0 0 0 0;
+}
+
+// consistent scrollbar style on all desktop browsers
+@media screen {
+  html[data-scrollbar="customize"] {
+    //scrollbar-gutter: stable;
+    //scrollbar-width: thin;
+
+    ::-webkit-scrollbar {
+      border-radius: 1rem;
+      background: transparent;
+      width: 0.65rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 0.65rem;
+      background: var(--color-fill-3);
+      background-clip: content-box;
+
+      &:hover {
+        background: var(--color-fill-4);
+      }
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
+}
