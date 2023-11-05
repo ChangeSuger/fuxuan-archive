@@ -11,10 +11,8 @@
       <a-divider />
     </a-typography>
 
-
-
     <div class="link-box">
-      <a class="friend-link" href="">
+      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-github :size="35"/>
@@ -26,7 +24,7 @@
           本工具已在 GitHub 以 MIT 协议完全开源
         </a-card>
       </a>
-      <a class="friend-link" href="">
+      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection/issues">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-message :size="35"/>
@@ -38,7 +36,7 @@
           不论是问反馈题还是功能建议都非常欢迎
         </a-card>
       </a>
-      <a class="friend-link" href="">
+      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection/blob/main/CONTRIBUTING.md">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-code :size="35"/>
