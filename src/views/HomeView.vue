@@ -2,7 +2,7 @@
   <div id="home-box">
     <a-typography>
       <a-typography-title style="font-family: 'FirstWorld';">
-        FuXuan Collection
+        FuXuan Archive
       </a-typography-title>
 
       <a-typography-text>
@@ -12,7 +12,7 @@
     </a-typography>
 
     <div class="link-box">
-      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection">
+      <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-github :size="35"/>
@@ -24,7 +24,7 @@
           本工具已在 GitHub 以 MIT 协议完全开源
         </a-card>
       </a>
-      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection/issues">
+      <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive/issues">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-message :size="35"/>
@@ -36,7 +36,7 @@
           不论是问反馈题还是功能建议都非常欢迎
         </a-card>
       </a>
-      <a class="friend-link" href="https://github.com/ChangeSuger/fuxuan-collection/blob/main/CONTRIBUTING.md">
+      <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive/blob/main/CONTRIBUTING.md">
         <a-card class="friend-card" :bordered="false" hoverable>
           <template #title>
             <icon-code :size="35"/>

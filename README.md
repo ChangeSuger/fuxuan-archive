@@ -1,4 +1,4 @@
-# FuXuan Collection
+# FuXuan Archive
 
 [崩坏·星穹铁道](https://sr.mihoyo.com/)成就管理工具
 
