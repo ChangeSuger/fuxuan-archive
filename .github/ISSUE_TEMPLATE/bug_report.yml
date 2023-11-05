@@ -1,0 +1,30 @@
+name: 我要报告一个问题
+description: 它的行为好像和我预料的不太一样。
+labels:
+  - bug
+title: "[Bug] "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你的 Bug🐛 提交
+  - type: textarea
+    id: question
+    attributes:
+      label: 问题描述
+      description: 请在这里描述你的问题。如果你有截图，请在文本框中上传。
+      placeholder: 问题描述
+    validations:
+      required: true
+  - type: textarea
+    id: operation
+    attributes:
+      label: 复现流程
+      description: 告诉我们如何操作才有可能重现你的问题，以便我们定位和解决。
+      placeholder: |
+        1. 打开冰箱门
+        2. 把大象放进去
+        3. 关上冰箱门
+    validations:
+      required: false
