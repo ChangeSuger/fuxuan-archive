@@ -15,3 +15,5 @@
 | 字体 | [StarRailRes](https://github.com/Mar-7th/StarRailRes) |
 
 ## LICENSE
+
+MIT
