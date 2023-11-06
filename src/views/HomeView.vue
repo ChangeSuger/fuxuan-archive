@@ -11,9 +11,9 @@
       <a-divider />
     </a-typography>
 
-    <div class="link-box">
+    <div class="link-box flex-horizontal">
       <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive">
-        <a-card class="friend-card" :bordered="false" hoverable>
+        <a-card class="friend-card fill-width rounded-medium" :bordered="false" hoverable>
           <template #title>
             <icon-github :size="35"/>
           </template>
@@ -25,7 +25,7 @@
         </a-card>
       </a>
       <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive/issues">
-        <a-card class="friend-card" :bordered="false" hoverable>
+        <a-card class="friend-card fill-width rounded-medium" :bordered="false" hoverable>
           <template #title>
             <icon-message :size="35"/>
           </template>
@@ -37,7 +37,7 @@
         </a-card>
       </a>
       <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive/blob/main/CONTRIBUTING.md">
-        <a-card class="friend-card" :bordered="false" hoverable>
+        <a-card class="friend-card fill-width rounded-medium" :bordered="false" hoverable>
           <template #title>
             <icon-code :size="35"/>
           </template>
@@ -48,7 +48,6 @@
           期待您的贡献，一起让工具更加完善
         </a-card>
       </a>
-
     </div>
   </div>
 </template>
@@ -59,8 +58,8 @@ import { IconGithub, IconMessage, IconCode } from '@arco-design/web-vue/es/icon'
 
 <style lang="scss">
 #home-box {
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,15 +68,12 @@ import { IconGithub, IconMessage, IconCode } from '@arco-design/web-vue/es/icon'
   padding-top: 0px;
 
   .link-box {
-    display: flex;
-    flex-direction: row;
     justify-content: space-around;
+
     a.friend-link {
       width: 32%;
 
       .friend-card {
-        width: 100%;
-        border-radius: 10px;
         background-color: var(--color-fill-2);
         transition-property: all;
 

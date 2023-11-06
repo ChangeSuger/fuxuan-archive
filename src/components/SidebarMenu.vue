@@ -1,6 +1,6 @@
 <template>
-  <div class="sidebar-menu">
-    <div class="menu">
+  <div class="sidebar-menu flex-vertical">
+    <div class="menu flex-vertical fill-width">
       <RouterLink to="/">
         <div style="font-family: 'FirstWorld'; font-size: 30px;">
           FUXUAN
@@ -10,13 +10,13 @@
       <AchievementSeriesMenu />
     </div>
 
-    <div id="menu-footer">
+    <div class="menu-footer flex-horizontal fill-width">
       <RouterLink to="/setting">
-        <button>
+        <button class="center rounded-small">
           <icon-settings :size="30" />
         </button>
       </RouterLink>
-      <button @click="toggleTheme">
+      <button @click="toggleTheme" class="center rounded-small">
         <icon-sun v-if="settingsStore.getTheme==='light'" :size="30" />
         <icon-moon v-else :size="30" />
       </button>
@@ -45,10 +45,7 @@ function toggleTheme () {
 </script>
 
 <style scoped lang="scss">
-#menu-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+.menu-footer {
   justify-content: left;
   padding: 0 10px;
 
