@@ -41,9 +41,14 @@ export const useSettingsStore = defineStore(
     }
 
     return {
+      lang,
+      textjoin,
+      theme,
+
       getLang,
       getTextjoin,
       getTheme,
+      
       setLang,
       setTextjoin,
       setTheme,

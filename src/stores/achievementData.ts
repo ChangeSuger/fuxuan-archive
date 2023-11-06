@@ -5,7 +5,7 @@ import { useSettingsStore } from './settings';
 import { calculeTotalAchievement } from '@/utils/achievementCount';
 import { useRoute } from 'vue-router';
 
-import type { AchievementMap, AchievementSerieMap, TextMap, GeneratedAchievement, GeneratedAchievementSerie, TextjoinMap } from '@/types/Achievement';
+import type { AchievementMap, AchievementSerieMap, TextMap, GeneratedAchievement, GeneratedAchievementSerie, TextjoinMap, Version } from '@/types/Achievement';
 
 export const useAchievementDataStore = defineStore(
   'achievement-data',
@@ -84,12 +84,21 @@ export const useAchievementDataStore = defineStore(
       return _textjoin;
     });
 
+    const getVersions = computed(() => {
+      const versionSet = new Set<Version>();
+      getAchievementsBySerieID.value.forEach((achievement) => {
+        versionSet.add(achievement.releaseVersion);
+      });
+      return [...versionSet].sort((a, b) => b.localeCompare(a));
+    });
+
     return {
       getAchievements,
       getAchievementsBySerieID,
       getAchievementSeries,
       getTextMap,
       getTextjoin,
+      getVersions,
     }
   }
 )

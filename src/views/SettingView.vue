@@ -14,6 +14,7 @@
       <a-form-item field="language" label="语言">
         <a-select
           v-model="langSelected"
+          class="rounded-small"
           :style="{width:'160px'}"
           :trigger-props="{ autoFitPopupMinWidth: true }"
         >
@@ -32,6 +33,7 @@
       <a-form-item field="textjoin-54" label="以太战线中以太灵「次元扑满」的命名">
         <a-select
           v-model="textjoin_54"
+          class="rounded-small"
           :style="{width:'160px'}"
           :trigger-props="{ autoFitPopupMinWidth: true }"
         >
@@ -45,11 +47,19 @@
       <a-divider />
     </a-typography>
 
-    <a-button type="primary" status="danger" style="width: 150px;" @click="achieveStateStore.clearAchieveState()">
+    <a-button
+      class="rounded-small"
+      style="width: 150px;"
+      type="primary"
+      status="danger"
+      @click="achieveStateStore.clearAchieveState()"
+    >
       <template #icon>
         <icon-delete />
       </template>
-      <template #default>清除统计数据</template>
+      <template #default>
+        清除统计数据
+      </template>
     </a-button>
   </div>
 </template>
@@ -85,8 +95,8 @@ watch(textjoin_54, (newTextjoin) => {
 
 <style scoped>
 #setting-box {
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;

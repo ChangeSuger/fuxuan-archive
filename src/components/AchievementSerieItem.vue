@@ -1,8 +1,12 @@
 <template>
-  <RouterLink :to="`/achievement/${achievementSerie.seriesID}`">
-    <div class="achievement-serie">
-      <p class="achievement-serie-title">{{ achievementSerie.seriesTitle }}</p>
-      <p class="achievement-serie-subtext">{{ `${achieveCount} / ${achievementSerie.totalAchievement} - (${percent}%)` }}</p>
+  <RouterLink class="fill-width center" :to="`/achievement/${achievementSerie.seriesID}`">
+    <div class="achievement-serie rounded-medium flex-vertical">
+      <p class="achievement-serie-title">
+        {{ achievementSerie.seriesTitle }}
+      </p>
+      <p class="achievement-serie-subtext">
+        {{ `${achieveCount} / ${achievementSerie.totalAchievement} - (${percent}%)` }}
+      </p>
     </div>
   </RouterLink>
 </template>

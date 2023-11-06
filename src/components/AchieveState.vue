@@ -1,5 +1,5 @@
 <template>
-  <div class="achieve-state">
+  <div class="achieve-state flex-horizontal">
     <span>达成成就</span>
     <span>{{ count }} / {{ all }}</span>
   </div>
@@ -14,7 +14,7 @@ const achieveStateStore = useAchieveStateStore();
 const achievementDataStore = useAchievementDataStore();
 
 const count = computed(() => {
-  return Object.values(achieveStateStore.getAchieveState)
+  return Object.values(achieveStateStore.achieveState)
     .filter(achievement => achievement.isAchieved).length;
 });
 
@@ -26,3 +26,12 @@ const all = computed(() => {
   return _all;
 })
 </script>
+
+<style scoped lang="scss">
+.achieve-state {
+  width: 90%;
+  height: 30px;
+
+  justify-content: space-around;
+}
+</style>

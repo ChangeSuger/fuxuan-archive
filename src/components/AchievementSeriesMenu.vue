@@ -1,5 +1,5 @@
 <template>
-  <div id="achievement-sidebar">
+  <div class="achievement-sidebar fill-width flex-vertical">
     <AchievementSerieItem
       v-for="achievementSerie of achievementSeriesSorted"
       :key="achievementSerie.seriesID"

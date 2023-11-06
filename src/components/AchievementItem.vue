@@ -1,7 +1,7 @@
 <template>
-  <div class="achievement-item">
+  <div class="achievement-item flex-horizontal">
     <button
-      class="achievement-button"
+      class="achievement-button center"
       :class="{ achieved: isAchieved, conflict: isConflict }"
       @click="achieveStateStore.setAchieveState(achievement)"
       :disabled="isConflict"
@@ -9,7 +9,7 @@
       <icon-close v-if="isConflict" :size="30" />
       <icon-check v-else :size="30" />
     </button>
-    <div class="achievement-text">
+    <div class="achievement-text flex-vertical">
       <p>
         {{ achievement.achievementTitle }}
         <a-space :size="3">
@@ -18,7 +18,7 @@
           <a-badge v-if="achievement.conflict" :text="conflictInfo"></a-badge>
         </a-space>
       </p>
-      <div class="achievement-description" v-html="descriptionHTML"></div>
+      <div class="achievement-description fill-width flex-vertical" v-html="descriptionHTML"></div>
     </div>
   </div>
 </template>

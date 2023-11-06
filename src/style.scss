@@ -60,32 +60,61 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
+button {
+  border: 0px;
+}
+
+a {
+  transition: 0.4s;
+  color: var(--color-text-1);
+}
+
+p {
+  width: 100%;
+}
+
+.center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  button {
-    border: 0px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.fill-width {
+  width: 100%;
+}
 
-  a {
-    // text-decoration: none;
-    transition: 0.4s;
-    color: var(--color-text-1);
-  }
+.fill-screen {
+  flex: 1;
+}
 
-  input {
-    border: 0px;
-    border-radius: 5px;
-    outline: none;
-    font-size: 14px;
-    padding: 0 5px;
-  }
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rounded-small {
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+}
+
+.rounded-medium {
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+}
+
+.rounded-large {
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
 }
 
 #app {
@@ -93,10 +122,8 @@ body {
   height: 96vh;
   overflow: hidden;
   border: var(--color-border) solid 5px;
-  border-radius: 20px;
+  border-radius: 2rem;
   background-color: var(--color-bg);
-
-  font-weight: normal;
 
   display: flex;
 }
@@ -107,36 +134,13 @@ body {
   background-color: var(--color-fill-2);
   padding: 10px 0px;
 
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 
   .menu {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .achieve-state {
-      width: 90%;
-      height: 30px;
-
-      display: flex;
-      justify-content: space-around;
-    }
-
-    #achievement-sidebar {
-      width: 100%;
-
+    .achievement-sidebar {
       .achievement-serie {
         width: 90%;
-        height: 50px;
-        margin: 0px auto;
-        padding: 0px 15px;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
+        padding: 0.25rem 1rem;
         justify-content: center;
 
         p {
@@ -155,7 +159,6 @@ body {
       }
     }
   }
-
 }
 
 #main-view {
@@ -163,88 +166,49 @@ body {
   height: 100%;
   overflow-y: hidden;
 
-  #achievement-manage {
+  .achievement-manage {
     height: 100%;
     width: 100%;
-    display: flex;
+    overflow-y: scroll;
 
-    #achievement-box {
-      width: 100%;
-      height: 100%;
-      overflow-y: scroll;
+    .achievement-item {
+      margin-top: 0.5rem;
+      width: calc(100% - 1rem);
+      background-color: var(--color-fill-3);
+      padding: 0.5rem;
+      border-radius: 1px;
+      border-top-right-radius: 1rem;
 
-      .achievement-toolbox {
-        width: calc(100% - 10px);
-        margin: 0px 5px;
-        padding-top: 5px;
-        height: 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+      justify-content: left;
 
-        span {
-          border-radius: 10px;
+      .achievement-button{
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-right: 10px;
+        color: var(--color-text-1);
+        background-color: var(--color-fill-2);
+
+        &.achieved {
+          background-color: var(--kokomi-purple);
+        }
+
+        &.conflict {
+          background-color: var(--kokomi-pink);
         }
       }
 
-      .achievement-item {
-        margin: 5px auto;
-        width: calc(100% - 10px);
-        height: 90px;
-        background-color: var(--color-fill-3);
-        padding: 10px;
-        border-radius: 1px;
-        border-top-right-radius: 12px;
+      .achievement-text {
 
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-
-        .achievement-button{
-          width: 50px;
-          height: 50px;
-          border-radius: 50px;
-          margin-right: 10px;
-          color: var(--color-text-1);
-          background-color: var(--color-fill-2);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          &.achieved {
-            background-color: var(--kokomi-purple);
-          }
-
-          &.conflict {
-            background-color: var(--kokomi-pink);
-          }
-
-          img {
-            width: 45px;
-            height: 45px;
-          }
+        > p {
+          font-weight: 700;
         }
 
-        .achievement-text {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          color: var(--color-text-1);
-
-          > p {
-            font-weight: 700;
-          }
-
-          .achievement-description {
-            font-size: 12px;
-            height: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: top;
-            color: var(--color-text-2);
-          }
+        .achievement-description {
+          font-size: 12px;
+          height: 40px;
+          justify-content: top;
+          color: var(--color-text-2);
         }
       }
     }
@@ -259,8 +223,6 @@ body {
 // consistent scrollbar style on all desktop browsers
 @media screen {
   html[data-scrollbar="customize"] {
-    //scrollbar-gutter: stable;
-    //scrollbar-width: thin;
 
     ::-webkit-scrollbar {
       border-radius: 1rem;
@@ -283,4 +245,8 @@ body {
       background-color: transparent;
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+
 }
