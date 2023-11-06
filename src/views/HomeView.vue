@@ -33,7 +33,7 @@
             反馈问题
           </template>
 
-          不论是问反馈题还是功能建议都非常欢迎
+          不论是问题反馈还是功能建议都非常欢迎
         </a-card>
       </a>
       <a class="friend-link" target="_blank" href="https://github.com/ChangeSuger/fuxuan-archive/blob/main/CONTRIBUTING.md">
