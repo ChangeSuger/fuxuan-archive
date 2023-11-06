@@ -34,6 +34,7 @@ export const useAchieveStateStore = defineStore(
     }
 
     return {
+      achieveState,
       getAchieveState,
       setAchieveState,
       clearAchieveState,
