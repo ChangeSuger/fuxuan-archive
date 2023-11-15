@@ -18,7 +18,7 @@ export const useAchievementDataStore = defineStore(
     const textMap = ref<TextMap>({});
 
     onMounted(async () => {
-      textMap.value = (await service.get(`/data/textMap/TextMap${settingsStore.getLang}.json`)).data;
+      textMap.value = (await service.get(`/data/textMap/TextMap${settingsStore.lang}.json`)).data;
 
       achievements.value = (await service.get('/data/Achievement.json')).data;
 
@@ -26,7 +26,7 @@ export const useAchievementDataStore = defineStore(
     });
 
     watch(
-      () => settingsStore.getLang,
+      () => settingsStore.lang,
       (newLang) => {
       service.get(`/data/textMap/TextMap${newLang}.json`).then((res) => {
         textMap.value = res.data;
@@ -76,7 +76,7 @@ export const useAchievementDataStore = defineStore(
     });
 
     const getTextjoin = computed(() => {
-      const textjoin = settingsStore.getTextjoin;
+      const textjoin = settingsStore.textjoin;
       const _textjoin: TextjoinMap = {};
       Object.keys(textjoin).forEach((key) => {
         _textjoin[key] = textMap.value[textjoin[key]];

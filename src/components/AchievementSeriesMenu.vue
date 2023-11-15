@@ -17,6 +17,7 @@ import AchievementSerieItem from '@/components/AchievementSerieItem.vue';
 const achievementDataStore = useAchievementDataStore();
 
 const achievementSeriesSorted = computed(() => {
-  return [...achievementDataStore.getAchievementSeries].sort((a, b) => b.priority - a.priority);
+  return [...achievementDataStore.getAchievementSeries]
+    .sort((a, b) => b.priority - a.priority);
 });
 </script>

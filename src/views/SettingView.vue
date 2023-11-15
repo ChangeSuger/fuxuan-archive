@@ -78,9 +78,9 @@ const achievementDataStore = useAchievementDataStore();
 const settingsStore = useSettingsStore();
 const achieveStateStore = useAchieveStateStore();
 
-const langSelected = ref(settingsStore.getLang);
+const langSelected = ref(settingsStore.lang);
 
-const textjoin_54 = ref(settingsStore.getTextjoin[54]);
+const textjoin_54 = ref(settingsStore.textjoin[54]);
 
 const form = ref({});
 

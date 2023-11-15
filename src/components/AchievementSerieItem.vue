@@ -1,5 +1,8 @@
 <template>
-  <RouterLink class="fill-width center" :to="`/achievement/${achievementSerie.seriesID}`">
+  <RouterLink
+    class="fill-width center"
+    :to="`/achievement/${achievementSerie.seriesID}`"
+  >
     <div class="achievement-serie rounded-medium flex-vertical">
       <p class="achievement-serie-title">
         {{ achievementSerie.seriesTitle }}
@@ -28,7 +31,7 @@ const props = defineProps({
 const achieveStateStore = useAchieveStateStore();
 
 const achieveCount = computed(() => {
-  return Object.values(achieveStateStore.getAchieveState)
+  return Object.values(achieveStateStore.achieveState)
     .filter(achievement =>
       achievement.seriesID === props.achievementSerie.seriesID &&
       achievement.isAchieved

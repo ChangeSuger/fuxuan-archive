@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import type { Language } from '@/types/Settings';
 
 type Theme = 'light' | 'dark';
@@ -14,16 +14,6 @@ export const useSettingsStore = defineStore(
     const lang = ref('CHS' as Language);
     const textjoin = ref(textjoinInit as { [id: number | string]: number; });
     const theme = ref<Theme>('dark');
-
-    const getLang = computed(() => {
-      return lang.value;
-    });
-    const getTextjoin = computed(() => {
-      return textjoin.value;
-    });
-    const getTheme = computed(() => {
-      return theme.value;
-    });
 
     function setLang (_lang: Language) {
       lang.value = _lang;
@@ -45,10 +35,6 @@ export const useSettingsStore = defineStore(
       textjoin,
       theme,
 
-      getLang,
-      getTextjoin,
-      getTheme,
-      
       setLang,
       setTextjoin,
       setTheme,
