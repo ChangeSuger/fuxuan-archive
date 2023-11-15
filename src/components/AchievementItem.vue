@@ -45,13 +45,13 @@ const achieveStateStore = useAchieveStateStore();
 
 const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin));
 const isAchieved = computed(() =>
-  achieveStateStore.getAchieveState[props.achievement.achievementID]?.isAchieved ?? false
+  achieveStateStore.achieveState[props.achievement.achievementID]?.isAchieved ?? false
 );
 
 const isConflict = computed(() => {
   if (props.achievement.conflict) {
     return props.achievement.conflict.some((achievementID) => {
-      return achieveStateStore.getAchieveState[achievementID]?.isAchieved ?? false;
+      return achieveStateStore.achieveState[achievementID]?.isAchieved ?? false;
     });
   } else {
     return false;
@@ -62,8 +62,8 @@ const conflictInfo = computed(() => {
   if (isConflict.value) {
     let info = "分支成就，已完成其中一个分支："
     props.achievement.conflict?.some((achievementID) => {
-      if (achieveStateStore.getAchieveState[achievementID].isAchieved) {
-        info += achieveStateStore.getAchieveState[achievementID].achievementTitle
+      if (achieveStateStore.achieveState[achievementID].isAchieved) {
+        info += achieveStateStore.achieveState[achievementID].achievementTitle
         return true;
       } else {
         return false;
