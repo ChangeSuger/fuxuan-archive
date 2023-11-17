@@ -6,7 +6,7 @@
           FUXUAN
         </div>
       </RouterLink>
-      
+
       <AchieveState />
       <AchievementSeriesMenu />
     </div>
@@ -17,8 +17,8 @@
           <icon-settings :size="30" />
         </button>
       </RouterLink>
-      <button @click="toggleTheme" class="center rounded-small">
-        <icon-sun v-if="settingsStore.theme==='light'" :size="30" />
+      <button @click="settingsStore.toggleTheme()" class="center rounded-small">
+        <icon-sun v-if="settingsStore.getTheme==='light'" :size="30" />
         <icon-moon v-else :size="30" />
       </button>
     </div>
@@ -34,15 +34,6 @@ import AchievementSeriesMenu from './AchievementSeriesMenu.vue';
 import AchieveState from './AchieveState.vue';
 
 const settingsStore = useSettingsStore();
-
-function toggleTheme () {
-  if (settingsStore.theme === 'dark') {
-    settingsStore.setTheme('light');
-  } else {
-    settingsStore.setTheme('dark');
-  }
-}
-
 </script>
 
 <style scoped lang="scss">
