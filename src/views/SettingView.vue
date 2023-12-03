@@ -30,6 +30,31 @@
     </a-typography>
 
     <a-form :model="form" auto-label-width>
+      <a-form-item field="gender" label="开拓者的性别">
+        <a-switch
+          v-model="gender"
+          unchecked-color="#DE9EBA"
+          checked-color="#767ABA"
+          @change="settingsStore.toggleGender()"
+        >
+          <template #checked>
+            穹
+          </template>
+          <template #unchecked>
+            星
+          </template>
+        </a-switch>
+      </a-form-item>
+
+      <a-form-item field="nickname" label="开拓者的昵称">
+        <a-input
+          v-model="nickname"
+          :style="{width:'160px'}"
+          :placeholder="settingsStore.getNickname"
+          allow-clear
+        />
+      </a-form-item>
+
       <a-form-item field="textjoin-54" label="以太战线中以太灵「次元扑满」的命名">
         <a-select
           v-model="textjoin_54"
@@ -79,7 +104,8 @@ const settingsStore = useSettingsStore();
 const achieveStateStore = useAchieveStateStore();
 
 const langSelected = ref(settingsStore.lang);
-
+const gender = ref(settingsStore.gender);
+const nickname = ref(settingsStore.nickname);
 const textjoin_54 = ref(settingsStore.textjoin[54]);
 
 const form = ref({});
@@ -90,6 +116,10 @@ watch(langSelected, (newLang) => {
 
 watch(textjoin_54, (newTextjoin) => {
   settingsStore.setTextjoin(54, newTextjoin);
+});
+
+watch(nickname, (newNickname) => {
+  settingsStore.setNickname(newNickname);
 });
 </script>
 

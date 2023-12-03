@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref, computed, watch, onMounted } from 'vue';
 import { usePreferredDark } from '@vueuse/core';
 import type { Language } from '@/types/Settings';
+import { Gender } from '@/types/Settings';
 
 type Theme = 'light' | 'dark' | 'auto';
 
@@ -13,21 +14,27 @@ export const useSettingsStore = defineStore(
   'global-settings',
   () => {
     const lang = ref('CHS' as Language);
-    const textjoin = ref(textjoinInit as { [id: number | string]: number; });
     const theme = ref<Theme>('auto');
     const isDark = usePreferredDark();
+    const textjoin = ref(textjoinInit as { [id: number | string]: number; });
+    const gender = ref(Gender.Female);
+    const nickname = ref('');
 
     const getTheme = computed<Theme>(() => {
       return theme.value === 'auto'
         ? (isDark.value ? 'dark' : 'light')
         : theme.value;
     });
+    const getNickname = computed(() => {
+      return nickname.value !== ''
+        ? nickname.value
+        : gender.value
+          ? '星'
+          : '穹';
+    });
 
     function setLang (_lang: Language) {
       lang.value = _lang;
-    }
-    function setTextjoin (id: number | string, hash: number) {
-      textjoin.value[id] = hash;
     }
     function toggleTheme () {
       if (getTheme.value === 'dark') {
@@ -35,6 +42,17 @@ export const useSettingsStore = defineStore(
       } else {
         theme.value = isDark.value ? 'auto' : 'dark';
       }
+    }
+    function setTextjoin (id: number | string, hash: number) {
+      textjoin.value[id] = hash;
+    }
+    function toggleGender () {
+      gender.value = gender.value
+        ? Gender.Male
+        : Gender.Female;
+    }
+    function setNickname (_nickname: string) {
+      nickname.value = _nickname;
     }
 
     watch(
@@ -58,12 +76,17 @@ export const useSettingsStore = defineStore(
       lang,
       textjoin,
       theme,
+      gender,
+      nickname,
 
       getTheme,
+      getNickname,
 
       setLang,
       setTextjoin,
       toggleTheme,
+      toggleGender,
+      setNickname,
     }
   },
   {

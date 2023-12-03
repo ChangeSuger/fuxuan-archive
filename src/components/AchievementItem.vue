@@ -13,6 +13,7 @@
       <p>
         {{ achievement.achievementTitle }}
         <a-space :size="3">
+          <!-- <a-badge :text="String(achievement.achievementID)"></a-badge> -->
           <a-badge :text="achievement.releaseVersion"></a-badge>
           <a-badge v-if="achievement.ShowAfterFinish" :text="'隐藏'"></a-badge>
           <a-badge v-if="achievement.conflict" :text="conflictInfo"></a-badge>
@@ -26,7 +27,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { decodeDescription } from '@/utils/decodeText';
+import { useAchievementDataStore } from '@/stores/achievementData';
 import { useAchieveStateStore } from '@/stores/achieveState';
+import { useSettingsStore } from '@/stores/settings';
 
 import type { GeneratedAchievement } from '@/types/Achievement';
 
@@ -38,12 +41,12 @@ const props = defineProps({
     required: true,
   },
 });
-import { useAchievementDataStore } from '@/stores/achievementData';
 
 const achievementDataStore = useAchievementDataStore();
 const achieveStateStore = useAchieveStateStore();
+const settingsStore = useSettingsStore();
 
-const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin));
+const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin, settingsStore.getNickname));
 const isAchieved = computed(() =>
   achieveStateStore.achieveState[props.achievement.achievementID]?.isAchieved ?? false
 );

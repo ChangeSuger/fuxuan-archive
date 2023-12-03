@@ -13,3 +13,8 @@ export type Language =
   | 'TH'
   | 'VI'
 ;
+
+export enum Gender {
+  Male,
+  Female,
+}
