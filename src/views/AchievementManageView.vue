@@ -68,7 +68,7 @@ const unachievedPriority = ref(false);
 // const hideAchieved = ref(false);
 const toolboxHtml = ref<any | null>(null);
 
-const ascending = (a: GeneratedAchievement, b: GeneratedAchievement) => a.priority - b.priority;
+const ascending = (a: GeneratedAchievement, b: GeneratedAchievement) => b.priority - a.priority;
 
 const filterAchievementsByVersionAndSearchText = (achievements: GeneratedAchievement[]) => {
   if (versionSelected.value.length !== 0) {
