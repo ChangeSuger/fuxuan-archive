@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref, computed, onMounted, watch } from 'vue';
-import service from '@/api/service';
-import { useSettingsStore } from './settings';
-import { calculeTotalAchievement } from '@/utils/achievementCount';
 import { useRoute } from 'vue-router';
+import service from '@/api/service';
+import { useSettingsStore } from '@/stores/settings';
+import { useAchieveStateStore } from '@/stores/achieveState';
+import { calculeTotalAchievement } from '@/utils/achievementCount';
 
 import type { AchievementMap, AchievementSerieMap, TextMap, GeneratedAchievement, GeneratedAchievementSerie, TextjoinMap, Version } from '@/types/Achievement';
 
@@ -11,6 +12,7 @@ export const useAchievementDataStore = defineStore(
   'achievement-data',
   () => {
     const settingsStore = useSettingsStore();
+    const achieveStateStore = useAchieveStateStore();
     const route = useRoute();
 
     const achievements = ref<AchievementMap>({});
@@ -46,6 +48,10 @@ export const useAchievementDataStore = defineStore(
             ...achievement,
             achievementTitle: textMap.value[achievement.achievementTitle.Hash],
             achievementDesc: textMap.value[achievement.achievementDesc.Hash],
+            isAchieved: achieveStateStore.achieveState[achievement.achievementID]?.isAchieved ?? false,
+            isConflict: achievement.conflict?.some((achievementID) => {
+              return achieveStateStore.achieveState[achievementID]?.isAchieved ?? false;
+            }) ?? false,
           }
         );
       });

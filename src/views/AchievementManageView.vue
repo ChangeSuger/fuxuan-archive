@@ -1,7 +1,7 @@
 <template>
   <div class="achievement-manage flex-vertical">
     <div class="achievement-toolbox flex-horizontal" ref="toolboxHtml">
-      <div>
+      <div class="flex-horizontal">
         <a-select
           v-model="versionSelected"
           class="rounded-medium"
@@ -22,6 +22,14 @@
             {{ version }}
           </a-option>
         </a-select>
+
+        <a-divider direction="vertical" />
+
+        <a-checkbox v-model="unachievedPriority">优先未完成</a-checkbox>
+
+        <!-- <a-divider direction="vertical" /> -->
+
+        <!-- <a-checkbox v-model="hideAchieved">隐藏已完成</a-checkbox> -->
       </div>
 
       <a-input
@@ -34,7 +42,7 @@
     </div>
 
     <AchievementItem
-      v-for="achievement of achievementsFilter"
+      v-for="achievement of achievements"
       :key="achievement.achievementID"
       :achievement="achievement"
     />
@@ -56,22 +64,46 @@ const route = useRoute();
 
 const searchText = ref("");
 const versionSelected = ref<Version[]>([]);
+const unachievedPriority = ref(false);
+// const hideAchieved = ref(false);
 const toolboxHtml = ref<any | null>(null);
 
-const achievementsFilter = computed(() => {
-  let _achievementsFilter: GeneratedAchievement[] = [...achievementDataStore.getAchievementsBySerieID];
+const ascending = (a: GeneratedAchievement, b: GeneratedAchievement) => a.achievementID - b.achievementID;
+
+const filterAchievementsByVersionAndSearchText = (achievements: GeneratedAchievement[]) => {
   if (versionSelected.value.length !== 0) {
-    _achievementsFilter = _achievementsFilter.filter(
+    achievements = achievements.filter(
       achievement => versionSelected.value.includes(achievement.releaseVersion)
     );
   }
   if (searchText.value) {
-    _achievementsFilter = _achievementsFilter.filter((achievement) =>
+    achievements = achievements.filter((achievement) =>
       achievement.achievementID.toString().includes(searchText.value) ||
       achievement.achievementTitle.includes(searchText.value)
     );
   }
-  return _achievementsFilter.sort((a, b) => b.priority - a.priority);
+  return achievements.sort(ascending);
+};
+
+const ClassifyAchievementsByIsAchieved = (achievements: GeneratedAchievement[]) => {
+  return [
+    achievements.filter(achievement => achievement.isAchieved || achievement.isConflict),
+    achievements.filter(achievement => !(achievement.isAchieved || achievement.isConflict)),
+  ];
+};
+
+const achievements = computed(() => {
+  let _achievements: GeneratedAchievement[] = [...achievementDataStore.getAchievementsBySerieID];
+  if (unachievedPriority.value) {
+    const [achievementsAchieved, achievementsUnachieved] = ClassifyAchievementsByIsAchieved(_achievements);
+    _achievements = [
+      ...filterAchievementsByVersionAndSearchText(achievementsUnachieved),
+      ...filterAchievementsByVersionAndSearchText(achievementsAchieved),
+    ];
+  } else {
+    _achievements = filterAchievementsByVersionAndSearchText(_achievements);
+  }
+  return _achievements;
 });
 
 watch(
