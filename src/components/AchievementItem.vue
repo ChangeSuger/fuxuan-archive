@@ -2,17 +2,18 @@
   <div class="achievement-item flex-horizontal">
     <button
       class="achievement-button center"
-      :class="{ achieved: isAchieved, conflict: isConflict }"
+      :class="{ achieved: achievement.isAchieved, conflict: achievement.isConflict }"
       @click="achieveStateStore.setAchieveState(achievement)"
-      :disabled="isConflict"
+      :disabled="achievement.isConflict"
     >
-      <icon-close v-if="isConflict" :size="30" />
+      <icon-close v-if="achievement.isConflict" :size="30" />
       <icon-check v-else :size="30" />
     </button>
     <div class="achievement-text flex-vertical">
       <p>
         {{ achievement.achievementTitle }}
         <a-space :size="3">
+          <!-- <a-badge :text="String(achievement.achievementID)"></a-badge> -->
           <a-badge :text="achievement.releaseVersion"></a-badge>
           <a-badge v-if="achievement.ShowAfterFinish" :text="'隐藏'"></a-badge>
           <a-badge v-if="achievement.conflict" :text="conflictInfo"></a-badge>
@@ -26,7 +27,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { decodeDescription } from '@/utils/decodeText';
+import { useAchievementDataStore } from '@/stores/achievementData';
 import { useAchieveStateStore } from '@/stores/achieveState';
+import { useSettingsStore } from '@/stores/settings';
 
 import type { GeneratedAchievement } from '@/types/Achievement';
 
@@ -38,28 +41,15 @@ const props = defineProps({
     required: true,
   },
 });
-import { useAchievementDataStore } from '@/stores/achievementData';
 
 const achievementDataStore = useAchievementDataStore();
 const achieveStateStore = useAchieveStateStore();
+const settingsStore = useSettingsStore();
 
-const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin));
-const isAchieved = computed(() =>
-  achieveStateStore.achieveState[props.achievement.achievementID]?.isAchieved ?? false
-);
-
-const isConflict = computed(() => {
-  if (props.achievement.conflict) {
-    return props.achievement.conflict.some((achievementID) => {
-      return achieveStateStore.achieveState[achievementID]?.isAchieved ?? false;
-    });
-  } else {
-    return false;
-  }
-});
+const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin, settingsStore.getNickname));
 
 const conflictInfo = computed(() => {
-  if (isConflict.value) {
+  if (props.achievement.isConflict) {
     let info = "分支成就，已完成其中一个分支："
     props.achievement.conflict?.some((achievementID) => {
       if (achieveStateStore.achieveState[achievementID].isAchieved) {

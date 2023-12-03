@@ -62,6 +62,8 @@ export type GeneratedAchievement = {
   releaseVersion: Version;
   ShowAfterFinish: boolean;
   conflict?: number[];
+  isAchieved: boolean;
+  isConflict: boolean;
 };
 
 export type GeneratedAchievementSerie = {

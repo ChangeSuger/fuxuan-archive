@@ -9,6 +9,7 @@ const NICKNAME_REGEX = /\{NICKNAME\}/g;
 export function decodeDescription (
   achievement: GeneratedAchievement,
   textjoin: TextjoinMap,
+  nickname: string,
 ): string {
   let description: string = achievement.achievementDesc;
 
@@ -30,7 +31,7 @@ export function decodeDescription (
 
   const nicknameMatchResults = [...description.matchAll(NICKNAME_REGEX)];
   nicknameMatchResults.forEach((result) => {
-    description = description.replace(result[0], '星/穹');
+    description = description.replace(result[0], nickname);
   });
 
   const colorSpanMatcheResults = [...description.matchAll(COLOR_SPAN_REGEX)];
