@@ -8,13 +8,16 @@ type Param = {
 
 export type Rarity = "High" | "Mid" | "Low";
 
-export type Version =
-  | "1.0"
-  | "1.1"
-  | "1.2"
-  | "1.3"
-  | "1.4"
-  | "1.5";
+const VERSION_LIST = [
+  '1.0',
+  '1.1',
+  '1.2',
+  '1.3',
+  '1.4',
+  '1.5',
+] as const;
+
+export type Version = typeof VERSION_LIST[number]
 
 export type AchievementSerie = {
   seriesID: number;
@@ -51,27 +54,23 @@ export type VersionMap = {
   [achievmentID: number | string]: Version;
 };
 
-export type GeneratedAchievement = {
-  achievementID: number;
-  seriesID: number;
+type AchievementState = {
   achievementTitle: string;
   achievementDesc: string;
-  paramList: Param[];
-  rarity: Rarity;
-  priority: number;
-  releaseVersion: Version;
-  ShowAfterFinish: boolean;
-  conflict?: number[];
   isAchieved: boolean;
   isConflict: boolean;
-};
+}
 
-export type GeneratedAchievementSerie = {
-  seriesID: number;
+type AchievementSerieState = {
   seriesTitle: string;
-  priority: number;
   totalAchievement: number;
-};
+}
+
+export type GeneratedAchievement =
+  Omit<Achievement, 'achievementTitle' | 'achievementDesc'> & AchievementState;
+
+export type GeneratedAchievementSerie =
+  Omit<AchievementSerie, 'seriesTitle'> & AchievementSerieState;
 
 export type TextjoinMap = {
   [id: number| string]: string;
