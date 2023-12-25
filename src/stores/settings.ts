@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch, onMounted } from 'vue';
 import { usePreferredDark } from '@vueuse/core';
-import type { Language } from '@/types/Settings';
-import { Gender } from '@/types/Settings';
+import { Gender, type Language } from '@/types/Settings';
 
 type Theme = 'light' | 'dark' | 'auto';
 
@@ -16,7 +15,7 @@ export const useSettingsStore = defineStore(
     const lang = ref('CHS' as Language);
     const theme = ref<Theme>('auto');
     const isDark = usePreferredDark();
-    const textjoin = ref(textjoinInit as { [id: number | string]: number; });
+    const textjoin = ref(textjoinInit as Record<number|string, number>);
     const gender = ref(Gender.Female);
     const nickname = ref('');
 

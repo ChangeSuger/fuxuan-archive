@@ -25,9 +25,7 @@ export type AchievementSerie = {
   priority: number;
 };
 
-export type AchievementSerieMap = {
-  [seriesID: string]: AchievementSerie;
-};
+export type AchievementSerieMap = Record<string, AchievementSerie>
 
 export type Achievement = {
   achievementID: number;
@@ -42,17 +40,11 @@ export type Achievement = {
   conflict?: number[];
 };
 
-export type AchievementMap = {
-  [achievementID: string]: Achievement;
-};
+export type AchievementMap = Record<string, Achievement>
 
-export type TextMap = {
-  [hash: number | string]: string;
-};
+export type TextMap = Record<number|string, string>
 
-export type VersionMap = {
-  [achievmentID: number | string]: Version;
-};
+export type VersionMap = Record<number | string, Version>
 
 type AchievementState = {
   achievementTitle: string;
@@ -72,6 +64,4 @@ export type GeneratedAchievement =
 export type GeneratedAchievementSerie =
   Omit<AchievementSerie, 'seriesTitle'> & AchievementSerieState;
 
-export type TextjoinMap = {
-  [id: number| string]: string;
-}
+export type TextjoinMap = Record<number|string, string>
