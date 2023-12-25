@@ -72,20 +72,41 @@
       <a-divider />
     </a-typography>
 
-    <a-button
-      class="rounded-small"
-      style="width: 150px;"
-      type="primary"
-      status="danger"
-      @click="achieveStateStore.clearAchieveState()"
-    >
-      <template #icon>
-        <icon-delete />
-      </template>
-      <template #default>
-        清除统计数据
-      </template>
-    </a-button>
+    <a-space direction="horizontal">
+      <a-button
+        class="rounded-small"
+        style="width: 150px;"
+        type="primary"
+        @click="importDefaultJson()"
+      >
+        导入统计数据
+      </a-button>
+
+      <a-button
+        class="rounded-small"
+        style="width: 150px;"
+        type="primary"
+        @click="exportDefaultJson()"
+      >
+        导出统计数据
+      </a-button>
+
+      <a-button
+        class="rounded-small"
+        style="width: 150px;"
+        type="primary"
+        status="danger"
+        @click="achieveStateStore.clearAchieveState()"
+      >
+        <template #icon>
+          <icon-delete />
+        </template>
+        <template #default>
+          清除统计数据
+        </template>
+      </a-button>
+    </a-space>
+
   </div>
 </template>
 
@@ -94,6 +115,7 @@ import { ref, watch } from 'vue';
 import { useSettingsStore } from '@/stores/settings';
 import { useAchievementDataStore } from '@/stores/achievementData';
 import { useAchieveStateStore } from '@/stores/achieveState';
+import { exportDefaultJson, importDefaultJson } from '@/utils/dataExport';
 
 import { TEXTJOIN_HASH_MAP, langList } from '@/datas/extraData';
 
