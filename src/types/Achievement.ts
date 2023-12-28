@@ -2,9 +2,7 @@ type Text = {
   Hash: number;
 };
 
-type Param = {
-  Value: number;
-};
+export type Param = { Value: number; };
 
 export type Rarity = "High" | "Mid" | "Low";
 
@@ -15,6 +13,7 @@ const VERSION_LIST = [
   '1.3',
   '1.4',
   '1.5',
+  '1.6',
 ] as const;
 
 export type Version = typeof VERSION_LIST[number]
