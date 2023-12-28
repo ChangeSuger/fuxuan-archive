@@ -188,6 +188,7 @@ p {
         margin-right: 10px;
         color: var(--color-text-1);
         background-color: var(--color-fill-2);
+        cursor: pointer;
 
         &.achieved {
           background-color: var(--kokomi-purple);
@@ -195,6 +196,7 @@ p {
 
         &.conflict {
           background-color: var(--kokomi-pink);
+          cursor: not-allowed
         }
       }
 

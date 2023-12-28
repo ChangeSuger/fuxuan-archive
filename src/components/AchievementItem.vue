@@ -46,7 +46,13 @@ const achievementDataStore = useAchievementDataStore();
 const achieveStateStore = useAchieveStateStore();
 const settingsStore = useSettingsStore();
 
-const descriptionHTML = computed(() => decodeDescription(props.achievement, achievementDataStore.getTextjoin, settingsStore.getNickname));
+const descriptionHTML = computed(
+  () => decodeDescription(
+    props.achievement,
+    achievementDataStore.getTextjoin,
+    settingsStore.getNickname
+  )
+);
 
 const conflictInfo = computed(() => {
   if (props.achievement.isConflict) {
