@@ -26,10 +26,6 @@
         <a-divider direction="vertical" />
 
         <a-checkbox v-model="unachievedPriority">优先未完成</a-checkbox>
-
-        <!-- <a-divider direction="vertical" /> -->
-
-        <!-- <a-checkbox v-model="hideAchieved">隐藏已完成</a-checkbox> -->
       </div>
 
       <a-input
@@ -53,19 +49,20 @@
 import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAchievementDataStore } from '@/stores/achievementData';
+import { useSettingsStore } from '@/stores/settings';
 
 import type { GeneratedAchievement, Version } from '@/types/Achievement';
 
 import AchievementItem from '@/components/AchievementItem.vue';
 
 const achievementDataStore = useAchievementDataStore();
+const settingsStore = useSettingsStore();
 
 const route = useRoute();
 
 const searchText = ref("");
 const versionSelected = ref<Version[]>([]);
-const unachievedPriority = ref(false);
-// const hideAchieved = ref(false);
+const unachievedPriority = ref(settingsStore.unachievedPriority);
 const toolboxHtml = ref<any | null>(null);
 
 const ascending = (a: GeneratedAchievement, b: GeneratedAchievement) => b.priority - a.priority;
@@ -117,6 +114,13 @@ watch(
 
     // clear searchText when achievementSerie change
     searchText.value = "";
+  }
+);
+
+watch(
+  () => unachievedPriority.value,
+  () => {
+    settingsStore.toggleUnachievedPriority();
   }
 );
 </script>

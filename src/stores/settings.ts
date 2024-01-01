@@ -15,9 +15,12 @@ export const useSettingsStore = defineStore(
     const lang = ref('CHS' as Language);
     const theme = ref<Theme>('auto');
     const isDark = usePreferredDark();
+
     const textjoin = ref(textjoinInit as Record<number|string, number>);
     const gender = ref(Gender.Female);
     const nickname = ref('');
+
+    const unachievedPriority = ref(false);
 
     const getTheme = computed<Theme>(() => {
       return theme.value === 'auto'
@@ -35,6 +38,7 @@ export const useSettingsStore = defineStore(
     function setLang (_lang: Language) {
       lang.value = _lang;
     }
+
     function toggleTheme () {
       if (getTheme.value === 'dark') {
         theme.value = isDark.value ? 'light' : 'auto';
@@ -42,16 +46,23 @@ export const useSettingsStore = defineStore(
         theme.value = isDark.value ? 'auto' : 'dark';
       }
     }
+
     function setTextjoin (id: number | string, hash: number) {
       textjoin.value[id] = hash;
     }
+
     function toggleGender () {
       gender.value = gender.value
         ? Gender.Male
         : Gender.Female;
     }
+
     function setNickname (_nickname: string) {
       nickname.value = _nickname;
+    }
+
+    function toggleUnachievedPriority () {
+      unachievedPriority.value = !unachievedPriority.value;
     }
 
     watch(
@@ -77,6 +88,7 @@ export const useSettingsStore = defineStore(
       theme,
       gender,
       nickname,
+      unachievedPriority,
 
       getTheme,
       getNickname,
@@ -86,6 +98,7 @@ export const useSettingsStore = defineStore(
       toggleTheme,
       toggleGender,
       setNickname,
+      toggleUnachievedPriority,
     }
   },
   {

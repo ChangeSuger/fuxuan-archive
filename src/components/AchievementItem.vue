@@ -58,7 +58,7 @@ const conflictInfo = computed(() => {
   if (props.achievement.isConflict) {
     let info = "分支成就，已完成其中一个分支："
     props.achievement.conflict?.some((achievementID) => {
-      if (achieveStateStore.achieveState[achievementID].isAchieved) {
+      if (achieveStateStore.achieveState[achievementID]?.isAchieved) {
         info += achieveStateStore.achieveState[achievementID].achievementTitle
         return true;
       } else {
