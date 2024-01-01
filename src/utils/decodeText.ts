@@ -34,7 +34,7 @@ export function decodeParams (description: string, params: Param[]) {
     const value = params[index - 1].Value;
     const replacement = percent
       ? `${(value * 100).toFixed(0)}%`
-      : `${value}`;
+      : value.toLocaleString('en-US');
     description = description.replace(result[0], replacement);
   });
   return description;
@@ -43,7 +43,7 @@ export function decodeParams (description: string, params: Param[]) {
 export function decodeMillion (description: string) {
   const millionMatcheResults = [...description.matchAll(MILLION_REGEX)];
   millionMatcheResults.forEach((result) => {
-    description = description.replace(result[0], '1000000');
+    description = description.replace(result[0], '1,000,000');
   });
   return description;
 }
