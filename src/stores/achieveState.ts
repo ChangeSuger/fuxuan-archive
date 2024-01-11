@@ -11,20 +11,30 @@ export const useAchieveStateStore = defineStore(
   () => {
     const achieveState = ref({} as AchieveStateMap);
 
-    function setAchieveState (achievement: GeneratedAchievement) {
-      const achievementID = achievement.achievementID;
+    function setAchieveState (achievement: GeneratedAchievement, isAchieved: boolean = !achievement.isAchieved) {
+      const { achievementID, achievementTitle, seriesID, rarity } = achievement;
       const state = achieveState.value[achievementID];
       if (state) {
-        state.isAchieved = !state.isAchieved;
+        state.isAchieved = isAchieved;
       } else {
         achieveState.value[achievementID] = {
           achievementID,
-          achievementTitle: achievement.achievementTitle,
-          seriesID: achievement.seriesID,
-          rarity: achievement.rarity,
-          isAchieved: true,
+          achievementTitle,
+          seriesID,
+          rarity,
+          isAchieved,
         };
       }
+    }
+
+    function setAchieveStateWithAchievements (
+      achievements: GeneratedAchievement[],
+      isAchieved: boolean,
+    ) {
+      achievements = isAchieved
+        ? achievements.filter(achievement => !achievement.conflict)
+        : achievements;
+      achievements.forEach(achievement => setAchieveState(achievement, isAchieved));
     }
 
     function clearAchieveState () {
@@ -38,6 +48,7 @@ export const useAchieveStateStore = defineStore(
     return {
       achieveState,
       setAchieveState,
+      setAchieveStateWithAchievements,
       clearAchieveState,
       importAchieveState,
     }
