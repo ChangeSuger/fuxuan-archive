@@ -98,6 +98,10 @@ export const useAchievementDataStore = defineStore(
       return [...versionSet].sort((a, b) => b.localeCompare(a));
     });
 
+    const getIsAllAchieved = computed(() => {
+      return getAchievementsBySerieID.value.every((achievement) => achievement.isAchieved || achievement.isConflict);
+    });
+
     return {
       getAchievements,
       getAchievementsBySerieID,
@@ -105,6 +109,7 @@ export const useAchievementDataStore = defineStore(
       getTextMap,
       getTextjoin,
       getVersions,
+      getIsAllAchieved,
     }
   }
 )

@@ -26,6 +26,16 @@
         <a-divider direction="vertical" />
 
         <a-checkbox v-model="unachievedPriority">优先未完成</a-checkbox>
+
+        <a-divider direction="vertical" />
+
+        <a-checkbox
+          title="分支成就无法自动勾选完成"
+          :model-value="achievementDataStore.getIsAllAchieved"
+          @change="toggleAllAchieved"
+        >
+          全选本页
+        </a-checkbox>
       </div>
 
       <a-input
@@ -49,6 +59,7 @@
 import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAchievementDataStore } from '@/stores/achievementData';
+import { useAchieveStateStore } from '@/stores/achieveState';
 import { useSettingsStore } from '@/stores/settings';
 
 import type { GeneratedAchievement, Version } from '@/types/Achievement';
@@ -56,6 +67,7 @@ import type { GeneratedAchievement, Version } from '@/types/Achievement';
 import AchievementItem from '@/components/AchievementItem.vue';
 
 const achievementDataStore = useAchievementDataStore();
+const achieveStateStore = useAchieveStateStore();
 const settingsStore = useSettingsStore();
 
 const route = useRoute();
@@ -102,6 +114,10 @@ const achievements = computed(() => {
   }
   return _achievements;
 });
+
+function toggleAllAchieved () {
+  achieveStateStore.setAchieveStateWithAchievements(achievements.value, !achievementDataStore.getIsAllAchieved);
+}
 
 watch(
   () => route.params.seriesID,
