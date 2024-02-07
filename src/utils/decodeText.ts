@@ -1,7 +1,6 @@
 import type { GeneratedAchievement, TextjoinMap, Param } from '@/types/Achievement';
 
-const PARAM_REGEX = /#(?<index>[0-9]*?)\[i\](?<percent>%?)/g;
-const MILLION_REGEX = /#[0-9]*?\[m\]/g;
+const PARAM_REGEX = /(?<!=)#(?<index>[1-3])(?<tag>\[[im]\])?(?<percent>%?)/g;
 const NICKNAME_REGEX = /\{NICKNAME\}/g;
 const COLOR_SPAN_REGEX = /<color=(?<color>.*?)>(?<content>.*?)<\/color>/g;
 const TEXTJOIN_REGEX = /{TEXTJOIN#(?<id>[0-9]+?)}/g;
@@ -14,8 +13,6 @@ export function decodeDescription (
   let description = achievement.achievementDesc;
 
   description = decodeParams(description, achievement.paramList);
-
-  description = decodeMillion(description);
 
   description = decodeNickname(description, nickname);
 
@@ -33,17 +30,9 @@ export function decodeParams (description: string, params: Param[]) {
     const percent = result.groups?.percent;
     const value = params[index - 1].Value;
     const replacement = percent
-      ? `${(value * 100).toFixed(0)}%`
+      ? `${(result.groups?.tag ? value * 100 : value).toFixed(0)}%`
       : value.toLocaleString('en-US');
     description = description.replace(result[0], replacement);
-  });
-  return description;
-}
-
-export function decodeMillion (description: string) {
-  const millionMatcheResults = [...description.matchAll(MILLION_REGEX)];
-  millionMatcheResults.forEach((result) => {
-    description = description.replace(result[0], '1,000,000');
   });
   return description;
 }

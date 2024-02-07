@@ -2,7 +2,6 @@ import { test, expect } from 'vitest';
 
 import {
   decodeParams,
-  decodeMillion,
   decodeNickname,
   decodeColorSpan,
   decodeTextjoin,
@@ -28,12 +27,6 @@ test('decodeParams', () => {
       [{ Value: 1000000 }]
     )
   ).toBe('「金人旧巷市廛喧」中，为金人巷商会赚取1,000,000商会储值金')
-});
-
-test('decodeMillion', () => {
-  expect(
-    decodeMillion('在「罗浮杂俎」网站上收获#1[m]粉丝')
-  ).toBe('在「罗浮杂俎」网站上收获1,000,000粉丝');
 });
 
 test('decodeNickname', () => {
