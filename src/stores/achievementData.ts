@@ -15,6 +15,7 @@ export const useAchievementDataStore = defineStore(
     const achieveStateStore = useAchieveStateStore();
     const route = useRoute();
 
+    const loading = ref(true);
     const achievements = ref<AchievementMap>({});
     const achievementSeries = ref<AchievementSerieMap>({});
     const textMap = ref<TextMap>({});
@@ -25,15 +26,20 @@ export const useAchievementDataStore = defineStore(
       achievements.value = (await service.get('/data/Achievement.json')).data;
 
       achievementSeries.value = (await service.get('/data/AchievementSeries.json')).data;
+
+      loading.value = false;
     });
 
     watch(
       () => settingsStore.lang,
       (newLang) => {
-      service.get(`/data/textMap/TextMap${newLang}.json`).then((res) => {
-        textMap.value = res.data;
-      });
-    });
+        loading.value = true;
+        service.get(`/data/textMap/TextMap${newLang}.json`).then((res) => {
+          textMap.value = res.data;
+          loading.value = false;
+        });
+      }
+    );
 
     const getTextMap = computed(() => {
       return textMap.value;
@@ -103,6 +109,7 @@ export const useAchievementDataStore = defineStore(
     });
 
     return {
+      loading,
       getAchievements,
       getAchievementsBySerieID,
       getAchievementSeries,

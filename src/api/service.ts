@@ -9,8 +9,6 @@ const service = axios.create({
   withCredentials: false,
 });
 
-service.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {

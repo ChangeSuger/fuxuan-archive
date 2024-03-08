@@ -1,58 +1,60 @@
 <template>
-  <div class="achievement-manage flex-vertical">
-    <div class="achievement-toolbox flex-horizontal" ref="toolboxHtml">
-      <div class="flex-horizontal">
-        <a-select
-          v-model="versionSelected"
-          class="rounded-medium"
-          :style="{width:'160px'}"
-          placeholder="全部版本"
-          :trigger-props="{ autoFitPopupMinWidth: true }"
-          multiple
-          scrollbar
-          allow-clear
-          :allow-search="false"
-          :max-tag-count="1"
-        >
-          <a-option
-            v-for="version of achievementDataStore.getVersions"
-            :key="version"
-            :value="version"
+  <a-spin :loading="achievementDataStore.loading" class="fill-width fill-height">
+    <div class="achievement-manage flex-vertical">
+      <div class="achievement-toolbox flex-horizontal" ref="toolboxHtml">
+        <div class="flex-horizontal">
+          <a-select
+            v-model="versionSelected"
+            class="rounded-medium"
+            :style="{width:'160px'}"
+            placeholder="全部版本"
+            :trigger-props="{ autoFitPopupMinWidth: true }"
+            multiple
+            scrollbar
+            allow-clear
+            :allow-search="false"
+            :max-tag-count="1"
           >
-            {{ version }}
-          </a-option>
-        </a-select>
+            <a-option
+              v-for="version of achievementDataStore.getVersions"
+              :key="version"
+              :value="version"
+            >
+              {{ version }}
+            </a-option>
+          </a-select>
 
-        <a-divider direction="vertical" />
+          <a-divider direction="vertical" />
 
-        <a-checkbox v-model="unachievedPriority">优先未完成</a-checkbox>
+          <a-checkbox v-model="unachievedPriority">优先未完成</a-checkbox>
 
-        <a-divider direction="vertical" />
+          <a-divider direction="vertical" />
 
-        <a-checkbox
-          title="分支成就无法自动勾选完成"
-          :model-value="achievementDataStore.getIsAllAchieved"
-          @change="toggleAllAchieved"
-        >
-          全选本页
-        </a-checkbox>
+          <a-checkbox
+            title="分支成就无法自动勾选完成"
+            :model-value="achievementDataStore.getIsAllAchieved"
+            @change="toggleAllAchieved"
+          >
+            全选本页
+          </a-checkbox>
+        </div>
+
+        <a-input
+          v-model="searchText"
+          class="rounded-medium"
+          :style="{width:'320px'}"
+          placeholder="请输入成就名或 ID"
+          allow-clear
+        />
       </div>
 
-      <a-input
-        v-model="searchText"
-        class="rounded-medium"
-        :style="{width:'320px'}"
-        placeholder="请输入成就名或 ID"
-        allow-clear
+      <AchievementItem
+        v-for="achievement of achievements"
+        :key="achievement.achievementID"
+        :achievement="achievement"
       />
     </div>
-
-    <AchievementItem
-      v-for="achievement of achievements"
-      :key="achievement.achievementID"
-      :achievement="achievement"
-    />
-  </div>
+  </a-spin>
 </template>
 
 <script setup lang="ts">

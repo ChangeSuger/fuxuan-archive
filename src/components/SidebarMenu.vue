@@ -1,39 +1,43 @@
 <template>
-  <div class="sidebar-menu flex-vertical">
-    <div class="menu flex-vertical fill-width">
-      <RouterLink to="/">
-        <div style="font-family: 'FirstWorld'; font-size: 30px;">
-          FUXUAN
-        </div>
-      </RouterLink>
+  <a-spin :loading="achievementDataStore.loading">
+    <div class="sidebar-menu flex-vertical">
+      <div class="menu flex-vertical fill-width">
+        <RouterLink to="/">
+          <div style="font-family: 'FirstWorld'; font-size: 30px;">
+            FUXUAN
+          </div>
+        </RouterLink>
 
-      <AchieveState />
-      <AchievementSeriesMenu />
-    </div>
+        <AchieveState />
+        <AchievementSeriesMenu />
+      </div>
 
-    <div class="menu-footer flex-horizontal fill-width">
-      <RouterLink to="/setting">
-        <button class="center rounded-small">
-          <icon-settings :size="30" />
+      <div class="menu-footer flex-horizontal fill-width">
+        <RouterLink to="/setting">
+          <button class="center rounded-small">
+            <icon-settings :size="30" />
+          </button>
+        </RouterLink>
+        <button @click="settingsStore.toggleTheme()" class="center rounded-small">
+          <icon-sun v-if="settingsStore.getTheme==='light'" :size="30" />
+          <icon-moon v-else :size="30" />
         </button>
-      </RouterLink>
-      <button @click="settingsStore.toggleTheme()" class="center rounded-small">
-        <icon-sun v-if="settingsStore.getTheme==='light'" :size="30" />
-        <icon-moon v-else :size="30" />
-      </button>
+      </div>
     </div>
-  </div>
+  </a-spin>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { useSettingsStore } from '@/stores/settings';
+import { useAchievementDataStore } from '@/stores/achievementData';
 
 import { IconSettings, IconSun, IconMoon } from '@arco-design/web-vue/es/icon';
 import AchievementSeriesMenu from './AchievementSeriesMenu.vue';
 import AchieveState from './AchieveState.vue';
 
 const settingsStore = useSettingsStore();
+const achievementDataStore = useAchievementDataStore();
 </script>
 
 <style scoped lang="scss">
