@@ -1,4 +1,4 @@
-import { ACHIEVEMENT_GROUP_LIST } from '@/datas/extraData';
+import { ACHIEVEMENT_GROUP_Map } from '@/datas/extraData';
 
 import type { GeneratedAchievement } from '@/types/Achievement';
 
@@ -7,12 +7,13 @@ export function calculeTotalAchievement(
   achievements: GeneratedAchievement[]
 ): number {
   const totalAchievement = achievements.filter(achievement => achievement.seriesID === seriesID).length;
-  if (seriesID === 5) {
-    let achievementCount = 0;
-    ACHIEVEMENT_GROUP_LIST.forEach(group => {
-      achievementCount += group.length - 1;
+  const achievementGroup = ACHIEVEMENT_GROUP_Map[seriesID];
+  if (achievementGroup) {
+    let conflictAchievementCount = 0;
+    achievementGroup.forEach(group => {
+      conflictAchievementCount += group.length - 1;
     });
-    return totalAchievement - achievementCount;
+    return totalAchievement - conflictAchievementCount;
   } else {
     return totalAchievement;
   }
