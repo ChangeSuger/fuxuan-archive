@@ -65,6 +65,17 @@
           <a-option v-for="hash in TEXTJOIN_HASH_MAP[54]" :key="hash" :value="hash">{{ achievementDataStore.getTextMap[hash] }}</a-option>
         </a-select>
       </a-form-item>
+
+      <a-form-item field="textjoin-87" label="晖长石号的命名">
+        <a-select
+          v-model="textjoin_87"
+          class="rounded-small"
+          :style="{width:'160px'}"
+          :trigger-props="{ autoFitPopupMinWidth: true }"
+        >
+          <a-option v-for="hash in TEXTJOIN_HASH_MAP[87]" :key="hash" :value="hash">{{ achievementDataStore.getTextMap[hash] }}</a-option>
+        </a-select>
+      </a-form-item>
     </a-form>
 
     <a-typography>
@@ -129,6 +140,7 @@ const langSelected = ref(settingsStore.lang);
 const gender = ref(settingsStore.gender);
 const nickname = ref(settingsStore.nickname);
 const textjoin_54 = ref(settingsStore.textjoin[54]);
+const textjoin_87 = ref(settingsStore.textjoin[87]);
 
 const form = ref({});
 
@@ -136,12 +148,16 @@ watch(langSelected, (newLang) => {
   settingsStore.setLang(newLang);
 });
 
+watch(nickname, (newNickname) => {
+  settingsStore.setNickname(newNickname);
+});
+
 watch(textjoin_54, (newTextjoin) => {
   settingsStore.setTextjoin(54, newTextjoin);
 });
 
-watch(nickname, (newNickname) => {
-  settingsStore.setNickname(newNickname);
+watch(textjoin_87, (newTextjoin) => {
+  settingsStore.setTextjoin(87, newTextjoin);
 });
 </script>
 

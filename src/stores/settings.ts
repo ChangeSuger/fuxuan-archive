@@ -6,7 +6,8 @@ import { Gender, type Language } from '@/types/Settings';
 type Theme = 'light' | 'dark' | 'auto';
 
 const textjoinInit = {
-  54: -262052143,
+  '54': -262052143,
+  '87': 141232019,
 };
 
 export const useSettingsStore = defineStore(
@@ -80,6 +81,12 @@ export const useSettingsStore = defineStore(
       if (getTheme.value === 'dark') {
         document.body.setAttribute('arco-theme', 'dark');
       }
+      // 增量更新文本插值时，如果本地有缓存，没法直接更新新字段的初始值，这里主要解决这个问题
+      Object.entries(textjoinInit).forEach(([key, value]) => {
+        if (textjoin.value[key] === undefined) {
+          textjoin.value[key] = value
+        }
+      });
     });
 
     return {
