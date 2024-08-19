@@ -13,7 +13,7 @@
       <p>
         {{ achievement.achievementTitle }}
         <a-space :size="3">
-          <!-- <a-badge :text="String(achievement.achievementID)"></a-badge> -->
+          <a-badge :text="String(achievement.achievementID)"></a-badge>
           <a-badge :text="achievement.releaseVersion"></a-badge>
           <a-badge v-if="achievement.ShowAfterFinish" :text="'隐藏'"></a-badge>
           <a-badge v-if="achievement.conflict" :text="conflictInfo"></a-badge>

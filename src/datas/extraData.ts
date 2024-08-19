@@ -49,6 +49,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
 
     // 2.3 主线，流萤视角下，在晖长石号上看到列车组/专注于寻找「慈玉典押」
     [4033303, 4033304],
+
+    // 2.4 主线，凭自己的口才说服公司专员/凭物理手段「劝服」公司专员
+    [4033402, 4033403],
   ],
 
   // 与你同行的回忆 SeriesID = 5
@@ -124,6 +127,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
 
     // 奥尔拉，筑梦诗
     [4053206, 4053207],
+
+    // 初次在幽囚狱上层俯瞰幽囚狱时，选择凝视深渊/暂时撤退
+    [4053415, 4053416],
   ],
 
   // 瞬息欢愉 SeriesID = 8
