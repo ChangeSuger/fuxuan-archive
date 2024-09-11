@@ -19,6 +19,7 @@ const VERSION_LIST = [
   '2.2',
   '2.3',
   '2.4',
+  '2.5',
 ] as const;
 
 export type Version = typeof VERSION_LIST[number]
