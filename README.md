@@ -2,20 +2,11 @@
 
 [崩坏：星穹铁道](https://sr.mihoyo.com/)成就管理工具
 
-## 关于新版本数据更新
+## 本项目已停止更新
 
-每个新版本当天会更新数据，分支成就与涉及剧情的全局文本插值等涉及实际的游戏内容的部分会稍晚更新。
+由于长时间没有找到新的数据源，本项目已停止更新😭。
 
-## TODO
-
-- [ ] I18n
-- [ ] 移动端适配
-
-## 素材来源
-
-| 素材 | 来源 |
-| --- | --- |
-| 字体 | [StarRailRes](https://github.com/Mar-7th/StarRailRes) |
+仍在寻找成就管理工具的开拓者们可以尝试使用官方提供的[成就管理工具](https://act.mihoyo.com/sr/event/cultivation-tool/index.html#/tools/achievement)，不仅完全平替本工具，还能直接同步游戏内的成就完成情况，简直不要太好用。
 
 ## LICENSE
 

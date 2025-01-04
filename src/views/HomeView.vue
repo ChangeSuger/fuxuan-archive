@@ -6,9 +6,20 @@
       </a-typography-title>
 
       <a-typography-text>
-        星穹铁道成就管理工具（绝赞开发中）
+        星穹铁道成就管理工具（已停止更新，截至 2.5 版本）
       </a-typography-text>
+
       <a-divider />
+
+      <a-typography-paragraph>
+        由于长时间没有找到新的数据源，本项目已停止更新😭。
+      </a-typography-paragraph>
+
+      <a-typography-paragraph>
+        仍在寻找成就管理工具的开拓者们可以尝试使用官方提供的
+        <a-link href="https://act.mihoyo.com/sr/event/cultivation-tool/index.html#/tools/achievement">成就管理工具</a-link>
+        ，不仅完全平替本工具，还能直接同步游戏内的成就完成情况，简直不要太好用。
+      </a-typography-paragraph>
     </a-typography>
 
     <div class="link-box flex-horizontal">

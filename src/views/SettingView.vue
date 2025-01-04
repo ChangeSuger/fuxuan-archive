@@ -117,7 +117,6 @@
         </template>
       </a-button>
     </a-space>
-
   </div>
 </template>
 
@@ -169,5 +168,6 @@ watch(textjoin_87, (newTextjoin) => {
   flex-direction: column;
   overflow-y: scroll;
   padding-left: 20px;
+  padding-bottom: 1rem;
 }
 </style>
