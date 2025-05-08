@@ -1,10 +1,10 @@
 import axios from "axios";
 import type { AxiosResponse } from 'axios';
 
-const TIMEOUT = 5; // second
+const TIMEOUT = 60 * 1000; // 60s
 
 const service = axios.create({
-  timeout: TIMEOUT * 1000,
+  timeout: TIMEOUT,
   headers: {},
   withCredentials: false,
 });

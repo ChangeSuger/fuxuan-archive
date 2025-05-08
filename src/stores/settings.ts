@@ -6,8 +6,8 @@ import { Gender, type Language } from '@/types/Settings';
 type Theme = 'light' | 'dark' | 'auto';
 
 const textjoinInit = {
-  '54': -262052143,
-  '87': 141232019,
+  '54': '13411972882538215511',
+  '87': '13830285572164364954',
 };
 
 export const useSettingsStore = defineStore(
@@ -17,7 +17,7 @@ export const useSettingsStore = defineStore(
     const theme = ref<Theme>('auto');
     const isDark = usePreferredDark();
 
-    const textjoin = ref(textjoinInit as Record<number|string, number>);
+    const textjoin = ref(textjoinInit as Record<number|string, string>);
     const gender = ref(Gender.Female);
     const nickname = ref('');
 
@@ -48,7 +48,7 @@ export const useSettingsStore = defineStore(
       }
     }
 
-    function setTextjoin (id: number | string, hash: number) {
+    function setTextjoin (id: number | string, hash: string) {
       textjoin.value[id] = hash;
     }
 
