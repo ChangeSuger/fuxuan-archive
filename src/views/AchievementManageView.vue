@@ -6,6 +6,7 @@
           <a-select
             v-model="versionSelected"
             class="rounded-medium"
+            :key="route.params.seriesID"
             :style="{width:'160px'}"
             placeholder="全部版本"
             :trigger-props="{ autoFitPopupMinWidth: true }"
@@ -30,13 +31,14 @@
 
           <a-divider direction="vertical" />
 
-          <a-checkbox
-            title="分支成就无法自动勾选完成"
-            :model-value="achievementDataStore.getIsAllAchieved"
-            @change="toggleAllAchieved"
-          >
-            全选本页
-          </a-checkbox>
+          <a-tooltip content="分支成就无法自动勾选完成" position="right">
+            <a-checkbox
+              :model-value="achievementDataStore.getIsAllAchieved"
+              @change="toggleAllAchieved"
+            >
+              全选本页
+            </a-checkbox>
+          </a-tooltip>
         </div>
 
         <a-input
