@@ -6,7 +6,7 @@
           <a-select
             v-model="versionSelected"
             class="rounded-medium"
-            :key="route.params.seriesID"
+            :key="(route.params.seriesID as string)"
             :style="{width:'160px'}"
             placeholder="全部版本"
             :trigger-props="{ autoFitPopupMinWidth: true }"
@@ -17,7 +17,7 @@
             :max-tag-count="1"
           >
             <a-option
-              v-for="version of achievementDataStore.getVersions"
+              v-for="version of versions"
               :key="version"
               :value="version"
             >
@@ -81,6 +81,10 @@ const versionSelected = ref<Version[]>([]);
 const unachievedPriority = ref(settingsStore.unachievedPriority);
 const toolboxHtml = ref<any | null>(null);
 
+const versions = computed(() => {
+  return achievementDataStore.getVersions;
+});
+
 const ascending = (a: GeneratedAchievement, b: GeneratedAchievement) => b.priority - a.priority;
 
 const filterAchievementsByVersionAndSearchText = (achievements: GeneratedAchievement[]) => {
@@ -130,7 +134,9 @@ watch(
     toolboxHtml.value?.scrollIntoView();
 
     // clear versionSelected when achievementSerie change
-    versionSelected.value = [];
+    versionSelected.value = versionSelected.value.filter((v) => {
+      return versions.value.includes(v);
+    });
 
     // clear searchText when achievementSerie change
     searchText.value = "";
