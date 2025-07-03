@@ -53,7 +53,7 @@ export const useAchievementDataStore = defineStore(
           {
             ...achievement,
             achievementTitle: textMap.value[achievement.achievementTitle.Hash],
-            achievementDesc: textMap.value[achievement.achievementDesc.Hash],
+            achievementDesc: textMap.value[achievement.achievementDesc.Hash] || '',
             isAchieved: achieveStateStore.achieveState[achievement.achievementID]?.isAchieved ?? false,
             isConflict: achievement.conflict?.some((achievementID) => {
               return achieveStateStore.achieveState[achievementID]?.isAchieved ?? false;

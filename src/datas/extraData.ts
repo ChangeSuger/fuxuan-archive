@@ -153,6 +153,12 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
     [4054059, 4054060, 4054061],
   ],
 
+  // 战意奔涌 seriesID = 7
+  7: [
+    // 是谁得了MVP？
+    [4074403, 4074404, 4074410],
+  ],
+
   // 瞬息欢愉 SeriesID = 8
   8: [
     // 在获得晖长石号所有权之前/之后，在泳池中冲刺玩水
