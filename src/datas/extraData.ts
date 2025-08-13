@@ -157,6 +157,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
   7: [
     // 是谁得了MVP？
     [4074403, 4074404, 4074410],
+
+    // 泡沫回归深海，剑旗，亦有汝焉？
+    [4074505, 4074506],
   ],
 
   // 瞬息欢愉 SeriesID = 8
