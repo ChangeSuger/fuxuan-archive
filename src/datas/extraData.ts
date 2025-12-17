@@ -64,6 +64,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
 
     // 3.0 主线，于不存在的记忆中同流萤/卡芙卡告别
     [4034004, 4034005],
+
+    //3.8 主线
+    [4034805, 4034806],
   ],
 
   // 与你同行的回忆 SeriesID = 5
