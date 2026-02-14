@@ -31,6 +31,7 @@ const VERSION_LIST = [
   '3.6',
   '3.7',
   '3.8',
+  '4.0',
 ] as const;
 
 export type Version = typeof VERSION_LIST[number]
