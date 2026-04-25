@@ -178,6 +178,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
 
     // 在签售会风波中，把偷懒的虚照逮回去/让普狸策勇敢承担不属于它的职责
     [4055103, 4055104],
+
+    // 将杀害斯科特的凶手交给仙舟联盟/战略投资部/公义
+    [4055201, 4055202, 4055203],
   ],
 
   // 战意奔涌 seriesID = 7
