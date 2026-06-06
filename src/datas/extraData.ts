@@ -181,6 +181,9 @@ export const ACHIEVEMENT_GROUP_Map: Record<number, number[][] | undefined> = {
 
     // 将杀害斯科特的凶手交给仙舟联盟/战略投资部/公义
     [4055201, 4055202, 4055203],
+
+    // 支持/反对《星轨之兔》继续研发
+    [4055302, 4055303],
   ],
 
   // 战意奔涌 seriesID = 7
